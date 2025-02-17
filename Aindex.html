@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to create your own DNS</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css" />
   <style>
     :root {
       --primary: #3478F6;
@@ -53,7 +53,7 @@
 
     .tip {
       background-color: var(--card-sectionning-background-color);
-      border-left: 4px solid var(--primary);
+      border-left: 4px solid var(--primary-dark); /* Updated to new dark blue */
       padding: 1rem;
       margin: 1rem 0;
     }
@@ -63,15 +63,16 @@
       padding: 0;
     }
 
-    /* Updated link color */
+    /* Updated link colors to use new dark blue */
     a {
-      color: var(--primary);
+      color: var(--primary-dark);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
-      color: var(--primary-dark);
+      /* You may keep the hover color same or change if desired */
+      color: var(--primary);
     }
   </style>
   <script>
@@ -86,6 +87,7 @@
           const text = item.getAttribute('data-url');
           navigator.clipboard.writeText(text).then(() => {
             item.innerText = "Copied!";
+
             setTimeout(() => {
               item.innerText = item.dataset.originalText;
             }, 1500);
@@ -105,7 +107,7 @@
       <ol>
         <li>Open the <a href="https://nextdns.io/" target="_blank">NextDNS website</a></li>
         <li>Click the Sign Up button</li>
-        <li>Enter your email & password</li>
+        <li>Enter your email &amp; password</li>
       </ol>
 
       <div class="tip">
