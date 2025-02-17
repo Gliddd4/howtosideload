@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Guide to Setting Up NextDNS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css">
+    <style>
+        /* Custom styles to enhance Pico CSS */
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        article {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: var(--card-background-color);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .url-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: var(--card-sectionning-background-color);
+            border-radius: 0.25rem;
+        }
+        
+        .url-text {
+            font-family: monospace;
+            margin-right: auto;
+        }
+        
+        .tip {
+            background-color: var(--card-sectionning-background-color);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        /* This will make the copy button look more like a Pico button but smaller */
+        .copy-btn {
+            background-color: var(--primary);
+            color: var(--primary-inverse);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .copy-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .copied {
+            background-color: var(--form-element-valid-border-color);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const text = button.getAttribute('data-url');
+                    navigator.clipboard.writeText(text).then(() => {
+                        // Visual feedback
+                        const originalText = button.innerText;
+                        button.innerText = "Copied!";
+                        button.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            button.innerText = originalText;
+                            button.classList.remove('copied');
+                        }, 1500);
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <main class="container">
+        <h1>Simple Guide to Setting Up NextDNS</h1>
+        
+        <article>
+            <h2>1. Create a NextDNS Account</h2>
+            <p>First, you need to make an account with NextDNS:</p>
+            <ol>
+                <li>Visit the <a href="https://nextdns.io/" target="_blank">NextDNS website</a></li>
+                <li>Click on the Sign Up button</li>
+                <li>Follow the instructions to create your account</li>
+            </ol>
+            
+            <div class="tip">
+                <p><strong>Privacy Tip:</strong> If you don't want to use your regular email address, you can use a temporary one instead!</p>
+                <ol>
+                    <li>Go to <a href="https://temp-mail.org/en/" target="_blank">Temp-Mail</a></li>
+                    <li>Copy the temporary email address they give you</li>
+                    <li>Use this email when signing up for NextDNS</li>
+                </ol>
+            </div>
+        </article>
+        
+        <article>
+            <h2>2. Set Up Your Deny List</h2>
+            <p>After creating your account, you'll need to add specific websites to your "deny list" - these are sites that will be blocked:</p>
+            
+            <ul>
+                <li class="url-item">
+                    <span class="url-text">ocsp.apple.com</span>
+                    <button class="copy-btn" data-url="ocsp.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">ocsp2.apple.com</span>
+                    <button class="copy-btn" data-url="ocsp2.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">valid.apple.com</span>
+                    <button class="copy-btn" data-url="valid.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">crl.apple.com</span>
+                    <button class="copy-btn" data-url="crl.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">certs.apple.com</span>
+                    <button class="copy-btn" data-url="certs.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">appattest.apple.com</span>
+                    <button class="copy-btn" data-url="appattest.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">vpp.itunes.apple.com</span>
+                    <button class="copy-btn" data-url="vpp.itunes.apple.com">Copy URL</button>
+                </li>
+            </ul>
+            
+            <p>To add these sites:</p>
+            <ol>
+                <li>Log in to your NextDNS account</li>
+                <li>Look for the "Deny List" or "Blocklist" tab</li>
+                <li>Add each address one by one</li>
+            </ol>
+        </article>
+        
+        <article>
+            <h2>3. Set Up Your Allow List</h2>
+            <p>Now you need to add specific websites to your "allow list" - these sites will always be allowed through:</p>
+            
+            <ul>
+                <li class="url-item">
+                    <span class="url-text">register.appattest.apple.com</span>
+                    <button class="copy-btn" data-url="register.appattest.apple.com">Copy URL</button>
+                </li>
+                <li class="url-item">
+                    <span class="url-text">app.localhost.direct</span>
+                    <button class="copy-btn" data-url="app.localhost.direct">Copy URL</button>
+                </li>
+            </ul>
+            
+            <p>To add these sites:</p>
+            <ol>
+                <li>In your NextDNS account, find the "Allow List" or "Whitelist" tab</li>
+                <li>Add each address one by one</li>
+            </ol>
+        </article>
+    </main>
+</body>
+</html>
