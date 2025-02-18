@@ -7,29 +7,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css" />
   <style>
     :root {
-      --default-bg: #1A232B;
+      --website-bg: #000000;
+      --section-bg: #1C1C1E;
+      --button-bg: #39393D;
       --hover-bg: #285FF4;
+      --text-color: white;
     }
+
     body {
+      background-color: var(--website-bg);
+      color: var(--text-color);
       max-width: 800px;
       margin: 0 auto;
       padding: 1rem;
     }
+
     /* Section styling */
     article {
-      margin-bottom: 2rem;
+      background-color: var(--section-bg);
       padding: 1.5rem;
       border-radius: 0.5rem;
-      background-color: var(--card-background-color, #f8f9fa);
+      margin-bottom: 2rem;
     }
+
     h1 {
       text-align: center;
       margin-bottom: 2rem;
     }
-    /* URL button styling without bullet points */
+
+    /* URL button styling */
     .url-item {
       display: block;
-      background-color: var(--default-bg);
+      background-color: var(--button-bg);
       color: white;
       text-decoration: none;
       padding: 1rem;
@@ -41,6 +50,7 @@
       max-width: 400px;
       transition: background-color 0.3s;
     }
+
     .url-item:hover,
     .url-item:active {
       background-color: var(--hover-bg);
