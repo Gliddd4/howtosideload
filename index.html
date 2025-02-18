@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css" />
   <style>
     :root {
-      --primary: #285FF4;
-      --primary-dark: #1E4EC9;
+      --default-bg: #1A232B;
+      --hover-bg: #285FF4;
     }
     body {
       max-width: 800px;
@@ -26,10 +26,10 @@
       text-align: center;
       margin-bottom: 2rem;
     }
-    /* URL button styling */
+    /* URL button styling without bullet points */
     .url-item {
       display: block;
-      background-color: var(--primary);
+      background-color: var(--default-bg);
       color: white;
       text-decoration: none;
       padding: 1rem;
@@ -43,7 +43,7 @@
     }
     .url-item:hover,
     .url-item:active {
-      background-color: var(--primary-dark);
+      background-color: var(--hover-bg);
     }
   </style>
 </head>
