@@ -102,11 +102,76 @@
       background-color: var(--primary-dark);
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // URL copy functionality
+      const urlItems = document.querySelectorAll('.url-item');
+      urlItems.forEach(item => {
+        item.dataset.originalText = item.innerText;
+        item.addEventListener('click', () => {
+          const text = item.getAttribute('data-url');
+          navigator.clipboard.writeText(text).then(() => {
+            item.innerText = "Copied!";
+            setTimeout(() => {
+              item.innerText = item.dataset.originalText;
+            }, 1500);
+          });
+        });
+      });
+
+      // Slider functionality with dot indicators
+      document.querySelectorAll('.slider-container').forEach(container => {
+        const slider = container.querySelector('.slider');
+        let index = 0;
+        const images = slider.querySelectorAll('img');
+        const totalImages = images.length;
+
+        // Create dot indicators container
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'slider-dots';
+        for (let i = 0; i < totalImages; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'dot';
+          if (i === 0) dot.classList.add('active');
+          dotsContainer.appendChild(dot);
+        }
+        container.appendChild(dotsContainer);
+
+        function updateSlider() {
+          slider.style.transform = `translateX(-${index * 100}%)`;
+          const dots = dotsContainer.querySelectorAll('.dot');
+          dots.forEach((dot, i) => {
+            if (i === index) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        }
+
+        // Touch swipe support
+        let startX = 0;
+        container.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX;
+        });
+        container.addEventListener("touchend", (e) => {
+          const endX = e.changedTouches[0].clientX;
+          if (startX - endX > 50 && index < totalImages - 1) { // Swipe left
+              index++;
+              updateSlider();
+          } else if (endX - startX > 50 && index > 0) { // Swipe right
+              index--;
+              updateSlider();
+          }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <main class="container">
     <h1>Blocking Revokes</h1>
-
+    
     <!-- Example Swipeable Image Slider -->
     <div class="slider-container">
       <div class="slider">
@@ -118,6 +183,32 @@
         <span class="dot"></span>
       </div>
     </div>
+
+    <article>
+      <h2>Set Up Your Deny List</h2>
+      <p>Add these URLs to the <strong>Deny List</strong> tab to block Apple's servers from revoking you:</p>
+      <ul>
+        <li class="url-item" data-url="ocsp.apple.com">ocsp.apple.com</li>
+        <li class="url-item" data-url="ocsp2.apple.com">ocsp2.apple.com</li>
+        <li class="url-item" data-url="valid.apple.com">valid.apple.com</li>
+        <li class="url-item" data-url="crl.apple.com">crl.apple.com</li>
+        <li class="url-item" data-url="certs.apple.com">certs.apple.com</li>
+        <li class="url-item" data-url="appattest.apple.com">appattest.apple.com</li>
+        <li class="url-item" data-url="vpp.itunes.apple.com">vpp.itunes.apple.com</li>
+      </ul>
+
+      <!-- Swipeable Image Slider for Deny List Section -->
+      <div class="slider-container">
+        <div class="slider">
+          <img src="https://via.placeholder.com/800x400" alt="Deny List Image 1">
+          <img src="https://via.placeholder.com/800x400" alt="Deny List Image 2">
+        </div>
+        <div class="slider-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </article>
   </main>
 </body>
 </html>
