@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blue URL Blocks with Labels</title>
+  <title>URL Navigation</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css" />
   <style>
     :root {
@@ -15,50 +15,49 @@
       margin: 0 auto;
       padding: 1rem;
     }
+    /* Section style similar to the reference */
+    article {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: var(--card-background-color, #f8f9fa);
+    }
     h1 {
       text-align: center;
       margin-bottom: 2rem;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    /* Styled URL blocks */
+    /* URL button styling */
     .url-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       background-color: var(--primary);
       color: white;
       text-decoration: none;
       padding: 1rem;
-      margin: 0.5rem 0;
+      margin: 1rem auto;
+      border: none;
       border-radius: 0.5rem;
+      text-align: center;
       font-size: 1.25rem;
+      max-width: 400px;
       transition: background-color 0.3s;
     }
-    .url-item:hover {
+    .url-item:hover,
+    .url-item:active {
       background-color: var(--primary-dark);
     }
   </style>
 </head>
 <body>
   <main class="container">
-    <h1>URL Links</h1>
-    <ul>
-      <li>
+    <article>
+      <h1>Navigation</h1>
+      <div>
         <a class="url-item" href="blockingrevokes.html">Blocking Revokes</a>
-      </li>
-      <li>
         <a class="url-item" href="https://example.com/page2">Example</a>
-      </li>
-      <li>
         <a class="url-item" href="https://example.com/page3">Example</a>
-      </li>
-      <li>
         <a class="url-item" href="https://example.com/page4">Example</a>
-      </li>
-    </ul>
+      </div>
+    </article>
   </main>
 </body>
 </html>
