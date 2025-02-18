@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to block revokes/n (best method)</title>
+  <title>Blocking Revokes</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css" />
   <style>
     :root {
@@ -114,33 +114,6 @@
     .slider-dots .dot.active {
       background-color: var(--primary-dark);
     }
-
-    /* Dark mode overrides */
-    @media (prefers-color-scheme: dark) {
-      /* Set the overall website background to black */
-      html {
-        background-color: black;
-      }
-      /* Keep the body transparent so the html background shows */
-      body {
-        background-color: transparent;
-        color: white;
-      }
-
-      /* Double the border radii */
-      article {
-        border-radius: calc(0.5rem * 2); /* 1rem */
-      }
-      .tip {
-        border-radius: calc(8px * 2); /* 16px */
-      }
-      .url-item {
-        border-radius: calc(0.25rem * 2); /* 0.5rem */
-      }
-      .slider-container {
-        border-radius: calc(8px * 2); /* 16px */
-      }
-    }
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -183,7 +156,11 @@
           // Update active dot indicator
           const dots = dotsContainer.querySelectorAll('.dot');
           dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
+            if (i === index) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
           });
         }
 
@@ -230,6 +207,7 @@
       <!-- Swipeable Image Slider for NextDNS Account Section -->
       <div class="slider-container">
         <div class="slider">
+          <!-- Ensure these GitHub URLs are correct -->
           <img src="https://github.com/Gliddd4/howtosideload/blob/master/1step.png?raw=true" alt="Step 1">
           <img src="https://github.com/Gliddd4/howtosideload/blob/master/2step.png?raw=true" alt="Step 2">
           <img src="https://github.com/Gliddd4/howtosideload/blob/master/3step.png?raw=true" alt="Step 3">
