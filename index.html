@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to create your own DNS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.10/pico.min.css" />
+  <style>
+    :root {
+      --primary: #3478F6;
+      --primary-light: #4c8ef8;
+      --primary-dark: #2c6be0;
+    }
+
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    article {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: var(--card-background-color);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* URL item styling */
+    .url-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      background-color: var(--card-sectionning-background-color);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .url-item:hover {
+      background-color: var(--primary-light);
+      color: white;
+    }
+
+    .tip {
+      background-color: var(--card-sectionning-background-color);
+      border-left: 4px solid var(--primary-dark);
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    /* Link styling */
+    a {
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: var(--primary);
+    }
+
+    /* Slider Container */
+    .slider-container {
+      position: relative;
+      max-width: 800px;
+      margin: 1rem auto;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    /* Slider */
+    .slider {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .slider img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Navigation Buttons */
+    .prev-btn, .next-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      border-radius: 50%;
+      user-select: none;
+    }
+
+    .prev-btn:hover, .next-btn:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // URL copy functionality
+      const urlItems = document.querySelectorAll('.url-item');
+      urlItems.forEach(item => {
+        // Store original text for later restoration
+        item.dataset.originalText = item.innerText;
+        item.addEventListener('click', () => {
+          const text = item.getAttribute('data-url');
+          navigator.clipboard.writeText(text).then(() => {
+            item.innerText = "Copied!";
+            setTimeout(() => {
+              item.innerText = item.dataset.originalText;
+            }, 1500);
+          });
+        });
+      });
+
+      // Slider functionality for each slider container
+      document.querySelectorAll('.slider-container').forEach(container => {
+        const slider = container.querySelector('.slider');
+        const prevBtn = container.querySelector('.prev-btn');
+        const nextBtn = container.querySelector('.next-btn');
+        let index = 0;
+        const totalImages = slider.querySelectorAll('img').length;
+
+        function updateSlider() {
+          slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        nextBtn.addEventListener("click", () => {
+          if (index < totalImages - 1) {
+            index++;
+            updateSlider();
+          }
+        });
+
+        prevBtn.addEventListener("click", () => {
+          if (index > 0) {
+            index--;
+            updateSlider();
+          }
+        });
+
+        // Touch swipe support for mobile devices
+        let startX = 0;
+        let endX = 0;
+        slider.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX;
+        });
+        slider.addEventListener("touchend", (e) => {
+          endX = e.changedTouches[0].clientX;
+          if (startX - endX > 50) { // Swipe left
+            if (index < totalImages - 1) {
+              index++;
+              updateSlider();
+            }
+          } else if (endX - startX > 50) { // Swipe right
+            if (index > 0) {
+              index--;
+              updateSlider();
+            }
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <main class="container">
+    <h1>How to create your own DNS</h1>
+    
+    <!-- NextDNS Account Section -->
+    <article>
+      <h2>Creating a NextDNS Account</h2>
+      <p>First, you'll need to create an account with NextDNS:</p>
+      <ol>
+        <li>Open the <a href="https://nextdns.io/" target="_blank">NextDNS website</a></li>
+        <li>Click the Sign Up button</li>
+        <li>Enter your email &amp; password</li>
+      </ol>
+      <div class="tip">
+        <p><strong>Recommended</strong>: Depending on your usage of the DNS, you may need to create a new account if you go over 300k queries per month.</p>
+        <ol>
+          <li>Go to <a href="https://temp-mail.org/en/" target="_blank">Temp-Mail</a></li>
+          <li>Copy your temporary email after it loads</li>
+          <li>Use this email to sign up for NextDNS</li>
+        </ol>
+      </div>
+      <!-- Swipeable Image Slider for NextDNS Account Section -->
+      <div class="slider-container">
+        <div class="slider">
+          <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1">
+          <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2">
+          <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
+          <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4">
+        </div>
+        <button class="prev-btn">&#10094;</button>
+        <button class="next-btn">&#10095;</button>
+      </div>
+    </article>
+    
+    <section>
+      <!-- Deny List Section -->
+      <article>
+        <h2>Set Up Your Deny List</h2>
+        <p>Add these URLs to the <strong>Deny List</strong> tab to block Apple's servers from revoking you:</p>
+        <ul>
+          <li class="url-item" data-url="ocsp.apple.com">ocsp.apple.com</li>
+          <li class="url-item" data-url="ocsp2.apple.com">ocsp2.apple.com</li>
+          <li class="url-item" data-url="valid.apple.com">valid.apple.com</li>
+          <li class="url-item" data-url="crl.apple.com">crl.apple.com</li>
+          <li class="url-item" data-url="certs.apple.com">certs.apple.com</li>
+          <li class="url-item" data-url="appattest.apple.com">appattest.apple.com</li>
+          <li class="url-item" data-url="vpp.itunes.apple.com">vpp.itunes.apple.com</li>
+        </ul>
+        <!-- Swipeable Image Slider for Deny List Section -->
+        <div class="slider-container">
+          <div class="slider">
+            <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1">
+            <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2">
+            <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
+            <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4">
+          </div>
+          <button class="prev-btn">&#10094;</button>
+          <button class="next-btn">&#10095;</button>
+        </div>
+      </article>
+
+      <!-- Allow List Section -->
+      <article>
+        <h2>Set Up Your Allow List</h2>
+        <p>Add these URLs to the <strong>Allow List</strong> tab to enable services like Feather and ChatGPT:</p>
+        <ul>
+          <li class="url-item" data-url="register.appattest.apple.com">register.appattest.apple.com</li>
+          <li class="url-item" data-url="app.localhost.direct">app.localhost.direct</li>
+        </ul>
+        <!-- Swipeable Image Slider for Allow List Section -->
+        <div class="slider-container">
+          <div class="slider">
+            <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1">
+            <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2">
+            <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
+            <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4">
+          </div>
+          <button class="prev-btn">&#10094;</button>
+          <button class="next-btn">&#10095;</button>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
