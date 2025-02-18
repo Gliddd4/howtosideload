@@ -81,6 +81,8 @@
       margin: 1rem auto;
       overflow: hidden;
       border-radius: 8px;
+      /* Allow swipe gestures on the entire container */
+      touch-action: pan-y;
     }
 
     /* Slider */
@@ -92,33 +94,6 @@
     .slider img {
       width: 100%;
       flex-shrink: 0;
-    }
-
-    /* Navigation Buttons */
-    .prev-btn, .next-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 1.5rem;
-      border-radius: 50%;
-      user-select: none;
-    }
-
-    .prev-btn:hover, .next-btn:hover {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .prev-btn {
-      left: 10px;
-    }
-
-    .next-btn {
-      right: 10px;
     }
   </style>
   <script>
@@ -142,8 +117,6 @@
       // Slider functionality for each slider container
       document.querySelectorAll('.slider-container').forEach(container => {
         const slider = container.querySelector('.slider');
-        const prevBtn = container.querySelector('.prev-btn');
-        const nextBtn = container.querySelector('.next-btn');
         let index = 0;
         const totalImages = slider.querySelectorAll('img').length;
 
@@ -151,27 +124,13 @@
           slider.style.transform = `translateX(-${index * 100}%)`;
         }
 
-        nextBtn.addEventListener("click", () => {
-          if (index < totalImages - 1) {
-            index++;
-            updateSlider();
-          }
-        });
-
-        prevBtn.addEventListener("click", () => {
-          if (index > 0) {
-            index--;
-            updateSlider();
-          }
-        });
-
-        // Touch swipe support for mobile devices
+        // Touch swipe support: listen on the entire container
         let startX = 0;
         let endX = 0;
-        slider.addEventListener("touchstart", (e) => {
+        container.addEventListener("touchstart", (e) => {
           startX = e.touches[0].clientX;
         });
-        slider.addEventListener("touchend", (e) => {
+        container.addEventListener("touchend", (e) => {
           endX = e.changedTouches[0].clientX;
           if (startX - endX > 50) { // Swipe left
             if (index < totalImages - 1) {
@@ -203,7 +162,7 @@
         <li>Enter your email &amp; password</li>
       </ol>
       <div class="tip">
-        <p><strong>Recommended</strong>: Depending on your usage of the DNS, you may need to create a new account if you go over 300k queries per month.</p>
+        <p><strong>Recommended</strong>: Depending on your DNS usage, you may need to create a new account if you exceed 300k queries per month.</p>
         <ol>
           <li>Go to <a href="https://temp-mail.org/en/" target="_blank">Temp-Mail</a></li>
           <li>Copy your temporary email after it loads</li>
@@ -218,8 +177,6 @@
           <img src="https://github.com/Gliddd4/howtosideload/blob/master/3step.png?raw=true" alt="Step 3">
           <img src="https://github.com/Gliddd4/howtosideload/blob/master41step.png?raw=true" alt="Step 4">
         </div>
-        <button class="prev-btn">&#10094;</button>
-        <button class="next-btn">&#10095;</button>
       </div>
     </article>
     
@@ -245,8 +202,6 @@
             <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
             <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4">
           </div>
-          <button class="prev-btn">&#10094;</button>
-          <button class="next-btn">&#10095;</button>
         </div>
       </article>
 
@@ -266,8 +221,6 @@
             <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
             <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4">
           </div>
-          <button class="prev-btn">&#10094;</button>
-          <button class="next-btn">&#10095;</button>
         </div>
       </article>
     </section>
