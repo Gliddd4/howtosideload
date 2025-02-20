@@ -43,6 +43,17 @@
     .url-item:active {
       background-color: var(--primary-dark);
     }
+    .discord-widget {
+      display: flex;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 350px;
+      width: 100%;
+    }
+    .discord-widget iframe {
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -55,6 +66,17 @@
         <a class="url-item" href="blockingrevokes.html">Blocking Revokes</a>
       </div>
     </article>
+
+    <div class="discord-widget">
+      <iframe 
+        src="https://discord.com/widget?id=1307431599561773066&theme=dark" 
+        width="350" 
+        height="500" 
+        allowtransparency="true" 
+        frameborder="0" 
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
   </main>
 
 </body>
