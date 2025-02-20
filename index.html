@@ -46,13 +46,15 @@
     .discord-widget {
       display: flex;
       justify-content: center;
-      margin: 2rem auto;
-      max-width: 350px;
-      width: 100%;
+      margin: 1rem auto;
+      max-width: 400px;
+      background-color: var(--card-background-color, #f8f9fa);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
     }
     .discord-widget iframe {
+      border: none;
       border-radius: 0.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
@@ -67,16 +69,18 @@
       </div>
     </article>
 
-    <div class="discord-widget">
-      <iframe 
-        src="https://discord.com/widget?id=1307431599561773066&theme=dark" 
-        width="350" 
-        height="500" 
-        allowtransparency="true" 
-        frameborder="0" 
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-      </iframe>
-    </div>
+    <article>
+      <div class="discord-widget">
+        <iframe 
+          src="https://discord.com/widget?id=1307431599561773066&theme=dark" 
+          width="350" 
+          height="500" 
+          allowtransparency="true" 
+          frameborder="0" 
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+        </iframe>
+      </div>
+    </article>
   </main>
 
 </body>
