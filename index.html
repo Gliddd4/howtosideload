@@ -13,17 +13,17 @@
     body {
       max-width: 800px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 0.5rem 1rem;
     }
     article {
-      margin-bottom: 2rem;
-      padding: 1.5rem;
+      margin-bottom: 1rem;
+      padding: 1rem; 
       border-radius: 0.5rem;
       background-color: var(--card-background-color, #f8f9fa);
     }
     h1 {
       text-align: center;
-      margin-bottom: 2rem;
+      margin: 1rem 0;
     }
     .url-item {
       display: block;
@@ -31,7 +31,7 @@
       color: white;
       text-decoration: none;
       padding: 1rem;
-      margin: 1rem auto;
+      margin: 0.75rem auto;
       border: none;
       border-radius: 0.5rem;
       text-align: center;
@@ -39,6 +39,10 @@
       max-width: 400px;
       transition: background-color 0.3s;
     }
+    .container {
+      padding: 0;
+    }
+
     .url-item:hover,
     .url-item:active {
       background-color: var(--primary-dark);
@@ -59,7 +63,6 @@
   </style>
 </head>
 <body>
-
   <h1>MyTutorials</h1>
 
   <main class="container">
