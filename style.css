@@ -5,11 +5,12 @@
   --background: #fbfbfd;
   --text: #1d1d1f;
   --text-secondary: #86868b;
-  --card-background: rgba(255, 255, 255, 0.8);
+  --card-background: #fff;
+  --border-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
-  max-width: 980px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
@@ -19,93 +20,164 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.hero {
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
+/* Typography */
 h1 {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 600;
   letter-spacing: -0.015em;
   color: var(--text);
-  margin-bottom: 1rem;
+  text-align: center;
+  margin: 2rem 0 3rem;
 }
 
-.subtitle {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  margin-bottom: 3rem;
+h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin: 1.5rem 0 1rem;
 }
 
-.container {
-  padding: 0 2rem;
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.card-grid {
-  display: grid;
-  gap: 1.5rem;
-  max-width: 600px;
-  margin: 0 auto;
+a:hover {
+  color: var(--primary-light);
 }
 
+/* Content Containers */
+article {
+  background: var(--card-background);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Lists */
+ol, ul {
+  padding-left: 1.25rem;
+  margin: 1rem 0;
+}
+
+ol li, ul li {
+  margin: 0.75rem 0;
+}
+
+/* URL Items */
 .url-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: var(--primary);
   color: white;
   text-decoration: none;
-  padding: 1.25rem 2rem;
+  padding: 1rem 2rem;
   border-radius: 9999px;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  margin: 0.75rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.url-item:hover, .url-item:active {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-light);
+}
+
+/* Tips */
+.tip {
+  background-color: rgba(0, 113, 227, 0.05);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.tip strong {
+  color: var(--text);
+}
+
+/* Image Slider */
+.slider-container {
+  position: relative;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: white;
+  border-radius: 8px;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--text-secondary);
+  border-radius: 50%;
+  opacity: 0.3;
   transition: all 0.3s ease;
 }
 
-.url-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
-  background-color: var(--primary-light);
-  color: white;
-}
-
-.url-item-icon {
-  font-size: 1.25rem;
-  opacity: 0.5;
-  transition: transform 0.3s ease;
-}
-
-.url-item:hover .url-item-icon {
+.dot.active {
   opacity: 1;
-  transform: translateX(4px);
+  background-color: var(--primary);
+  transform: scale(1.2);
 }
 
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   body {
     padding: 1rem;
   }
   
-  .hero {
-    padding: 2rem 1rem;
-  }
-  
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem;
   }
   
-  .subtitle {
-    font-size: 1.25rem;
+  h2 {
+    font-size: 1.5rem;
   }
   
-  .container {
-    padding: 0 1rem;
+  article {
+    padding: 1.5rem;
+    border-radius: 16px;
   }
   
   .url-item {
-    padding: 1rem 1.25rem;
-    font-size: 1.125rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .tip {
+    padding: 1rem;
   }
 }
