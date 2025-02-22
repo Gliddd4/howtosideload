@@ -1,11 +1,8 @@
 :root {
-  /* Apple's primary blue color and variants */
   --primary: #0071e3;
   --primary-light: #147ce5;
   --primary-dark: #0058b0;
-  
-  /* Apple's system colors */
-  --background: #ffffff;
+  --background: #fbfbfd;
   --text: #1d1d1f;
   --text-secondary: #86868b;
   --card-background: rgba(255, 255, 255, 0.8);
@@ -22,142 +19,94 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-article {
-  margin-bottom: 2rem;
-  padding: 2rem;
-  border-radius: 1rem;
-  background-color: var(--card-background);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-article:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
-}
-
-h1, h2 {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--text);
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
 }
 
 h1 {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 2rem;
-  text-align: left;
-  margin-bottom: 1.5rem;
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+}
+
+.container {
+  padding: 0 2rem;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .url-item {
-  display: inline-block;
-  background-color: var(--primary);
-  color: white;
-  text-decoration: none;
-  padding: 0.8rem 2rem;
-  margin: 1rem auto;
-  border-radius: 980px;
-  text-align: center;
-  font-size: 1.125rem;
-  font-weight: 500;
-  max-width: 400px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-}
-
-.url-item:hover,
-.url-item:active {
-  background-color: var(--primary-light);
-  transform: scale(1.02);
-}
-
-.discord-widget {
   display: flex;
-  justify-content: center;
-  margin: 2rem auto;
-  max-width: 400px;
+  align-items: center;
+  justify-content: space-between;
   background-color: var(--card-background);
-  padding: 2rem;
-  border-radius: 1rem;
+  color: var(--text);
+  text-decoration: none;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: 500;
   backdrop-filter: blur(20px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.discord-widget iframe {
-  border: none;
-  border-radius: 0.8rem;
-}
-
-.tip {
-  background-color: rgba(0, 113, 227, 0.05);
-  border-left: 4px solid var(--primary);
-  border-radius: 0.8rem;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--primary-light);
-}
-
-.slider-container {
-  position: relative;
-  max-width: 980px;
-  margin: 2rem auto;
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slider img {
-  width: 100%;
-  flex-shrink: 0;
-  border-radius: 1rem;
-  object-fit: cover;
-}
-
-.slider-dots {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.slider-dots .dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background-color: var(--text-secondary);
-  border-radius: 50%;
-  margin: 0 6px;
   transition: all 0.3s ease;
-  opacity: 0.5;
 }
 
-.slider-dots .dot.active {
+.url-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
   background-color: var(--primary);
+  color: white;
+}
+
+.url-item-icon {
+  font-size: 1.25rem;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.url-item:hover .url-item-icon {
   opacity: 1;
-  transform: scale(1.2);
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  
+  .hero {
+    padding: 2rem 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .url-item {
+    padding: 1rem 1.25rem;
+    font-size: 1.125rem;
+  }
 }
