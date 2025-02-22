@@ -152,6 +152,19 @@ ol li, ul li {
   transform: scale(1.2);
 }
 
+article div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.url-item {
+  display: inline-block; /* Changed from flex */
+  width: auto; /* Prevents full-width behavior */
+  background-color: var(--primary-dark); /* Better contrast */
+  font-weight: 600; /* Bolder text */
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   body {
