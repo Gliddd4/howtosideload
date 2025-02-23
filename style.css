@@ -126,21 +126,21 @@ ol li, ul li {
 .slider {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
+  overflow-x: hidden; /* Hide horizontal overflow */
   scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding: 0 1rem;
+  gap: 0; /* Remove gap between images */
+  padding: 0;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%; /* Take full width */
 }
 
 .slider img {
-  width: 100%;
-  min-width: 100%;
+  width: 100%; /* Each image takes full width */
   height: 400px;
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 12px;
-  scroll-snap-align: center;
+  scroll-snap-align: start; /* Snap to start of each image */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
