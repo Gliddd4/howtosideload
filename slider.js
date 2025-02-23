@@ -5,8 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const images = slider.querySelectorAll('img');
     const totalImages = images.length;
 
-    // Set the width of the slider to accommodate all images
-    slider.style.width = `${totalImages * 100}%`;
+    // Set the width of each image to 100% of the container
+    images.forEach(img => {
+      img.style.width = '100%'; // Ensure each image takes full width
+    });
 
     // Create dots for navigation
     const dotsContainer = document.createElement('div');
