@@ -146,10 +146,10 @@ ol li, ul li {
 .slider-dots {
   position: absolute;
   bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20px; /* Move dots to the left */
+  transform: none; /* Remove centering */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Align dots to the left */
   gap: 0.5rem;
   margin: 0;
   padding: 0;
@@ -175,14 +175,19 @@ ol li, ul li {
   transform: scale(1.2);
 }
 
-/* Prevent duplicate sliders */
-.slider-container:nth-child(n+2) {
-  display: none;
+/* Ensure images are visible */
+.slider-container {
+  overflow: hidden;
 }
 
-/* Ensure the first slider is visible */
-.slider-container:first-child {
-  display: block;
+.slider {
+  overflow-x: auto;
+}
+
+.slider img {
+  min-width: 100%;
+  height: 400px;
+  object-fit: cover;
 }
 
 article div {
