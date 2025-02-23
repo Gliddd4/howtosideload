@@ -1,0 +1,180 @@
+:root {
+  --primary: #285FF4;
+  --primary-light: #329AF0;
+  --primary-dark: #244EA8;
+  --background: #000000;
+  --text: #98989E;
+  --text-secondary: #86868B;
+  --card-background: #313135;
+  --border-color: rgba(49, 49, 53, 0.1);
+}
+
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  color: var(--text);
+  background-color: var(--background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+  text-align: left;
+  margin: 2rem 0 3rem;
+}
+
+h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+  margin: 1.5rem 0 1rem;
+  text-align: left;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+/* Content Containers */
+article {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Lists */
+ol, ul {
+  padding-left: 1.25rem;
+  margin: 1rem 0;
+}
+
+ol li, ul li {
+  margin: 0.75rem 0;
+  color: var(--text);
+}
+
+/* URL Items */
+.url-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0.75rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  text-align: center;
+}
+
+.url-item:hover, .url-item:active {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-light);
+}
+
+/* Tips */
+.tip {
+  background-color: rgba(40, 95, 244, 0.05);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.tip strong {
+  color: var(--text);
+}
+
+/* Image Slider */
+.slider-container {
+  position: relative;
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden; /* Hide overflow to create the sliding effect */
+  border-radius: 12px; /* Rounded corners for the container */
+}
+
+.slider {
+  display: flex; /* Align images horizontally */
+  width: 100%;
+  transition: transform 0.3s ease; /* Smooth sliding animation */
+}
+
+.slider img {
+  width: 100%; /* Each image takes full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  flex-shrink: 0; /* Prevent images from shrinking */
+  object-fit: contain; /* Ensure the image fits properly */
+  border-radius: 12px; /* Rounded corners for images */
+  max-height: 600px; /* Increase image size (adjust as needed) */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem;
+    text-align: left;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  
+  article {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .url-item {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .tip {
+    padding: 1rem;
+  }
+  
+  .slider-container {
+    max-height: 60vh;
+  }
+  
+  .slider img {
+    height: 300px;
+  }
+}
