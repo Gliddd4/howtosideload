@@ -146,10 +146,9 @@ ol li, ul li {
 .slider-dots {
   position: absolute;
   bottom: 1rem;
-  left: 20px; /* Move dots to the left */
-  transform: none; /* Remove centering */
+  left: 20px;
   display: flex;
-  justify-content: flex-start; /* Align dots to the left */
+  justify-content: flex-start;
   gap: 0.5rem;
   margin: 0;
   padding: 0;
@@ -175,15 +174,14 @@ ol li, ul li {
   transform: scale(1.2);
 }
 
-/* Ensure images are visible */
-.slider-container {
-  overflow: hidden;
+/* Prevent multiple sliders from interfering */
+.slider-container + .slider-container {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
 }
 
-.slider {
-  overflow-x: auto;
-}
-
+/* Ensure images load correctly */
 .slider img {
   min-width: 100%;
   height: 400px;
