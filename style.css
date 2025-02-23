@@ -1,12 +1,12 @@
 :root {
-  --primary: #0071e3;
-  --primary-light: #147ce5;
-  --primary-dark: #0058b0;
-  --background: #fbfbfd;
-  --text: #1d1d1f;
-  --text-secondary: #86868b;
-  --card-background: #fff;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --primary: #285FF4;
+  --primary-light: #329AF0;
+  --primary-dark: #244EA8;
+  --background: #000000;
+  --text: #1C1C1E;
+  --text-secondary: #86868B;
+  --card-background: #313135;
+  --border-color: rgba(49, 49, 53, 0.1);
 }
 
 body {
@@ -26,8 +26,8 @@ h1 {
   font-size: 3rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: var(--text);
-  text-align: center;
+  color: #FFFFFF;
+  text-align: left;
   margin: 2rem 0 3rem;
 }
 
@@ -36,8 +36,9 @@ h2 {
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: var(--text);
+  color: #FFFFFF;
   margin: 1.5rem 0 1rem;
+  text-align: left;
 }
 
 /* Links */
@@ -54,7 +55,7 @@ a:hover {
 /* Content Containers */
 article {
   background: var(--card-background);
-  border-radius: 20px;
+  border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -79,14 +80,15 @@ ol li, ul li {
   color: white;
   text-decoration: none;
   padding: 1rem 2rem;
-  border-radius: 9999px;
+  border-radius: 12px;
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0.75rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  min-width: 200px; /* Fixed minimum width */
 }
 
 .url-item:hover, .url-item:active {
@@ -97,7 +99,7 @@ ol li, ul li {
 
 /* Tips */
 .tip {
-  background-color: rgba(0, 113, 227, 0.05);
+  background-color: rgba(40, 95, 244, 0.05);
   border-left: 4px solid var(--primary);
   border-radius: 12px;
   padding: 1.5rem;
@@ -127,7 +129,7 @@ ol li, ul li {
   flex-shrink: 0;
   object-fit: contain;
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .slider-dots {
@@ -135,6 +137,7 @@ ol li, ul li {
   justify-content: center;
   gap: 0.5rem;
   margin: 1rem 0;
+  text-align: center;
 }
 
 .dot {
@@ -159,10 +162,10 @@ article div {
 }
 
 .url-item {
-  display: inline-block; /* Changed from flex */
-  width: auto; /* Prevents full-width behavior */
-  background-color: var(--primary-dark); /* Better contrast */
-  font-weight: 600; /* Bolder text */
+  display: inline-block;
+  width: auto;
+  background-color: var(--primary);
+  font-weight: 600;
 }
 
 /* Mobile Responsiveness */
@@ -174,20 +177,23 @@ article div {
   h1 {
     font-size: 2rem;
     margin: 1.5rem 0 2rem;
+    text-align: left;
   }
   
   h2 {
     font-size: 1.5rem;
+    text-align: left;
   }
   
   article {
     padding: 1.5rem;
-    border-radius: 16px;
+    border-radius: 12px;
   }
   
   .url-item {
     padding: 0.875rem 1.5rem;
     font-size: 1rem;
+    min-width: 180px;
   }
   
   .tip {
