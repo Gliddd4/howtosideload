@@ -5,67 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blocking Revokes</title>
   <link rel="stylesheet" href="style.css">
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const urlItems = document.querySelectorAll('.url-item');
-      urlItems.forEach(item => {
-        item.dataset.originalText = item.innerText;
-        item.addEventListener('click', () => {
-          const text = item.getAttribute('data-url');
-          navigator.clipboard.writeText(text).then(() => {
-            item.innerText = "Copied!";
-            setTimeout(() => {
-              item.innerText = item.dataset.originalText;
-            }, 1500);
-          });
-        });
-      });
-
-      document.querySelectorAll('.slider-container').forEach(container => {
-        const slider = container.querySelector('.slider');
-        let index = 0;
-        const images = slider.querySelectorAll('img');
-        const totalImages = images.length;
-
-        const dotsContainer = document.createElement('div');
-        dotsContainer.className = 'slider-dots';
-        for (let i = 0; i < totalImages; i++) {
-          const dot = document.createElement('span');
-          dot.className = 'dot';
-          if (i === 0) dot.classList.add('active');
-          dotsContainer.appendChild(dot);
-        }
-        container.appendChild(dotsContainer);
-
-        function updateSlider() {
-          slider.style.transform = `translateX(-${index * 100}%)`;
-          const dots = dotsContainer.querySelectorAll('.dot');
-          dots.forEach((dot, i) => {
-            if (i === index) {
-              dot.classList.add('active');
-            } else {
-              dot.classList.remove('active');
-            }
-          });
-        }
-
-        let startX = 0;
-        container.addEventListener("touchstart", (e) => {
-          startX = e.touches[0].clientX;
-        });
-        container.addEventListener("touchend", (e) => {
-          const endX = e.changedTouches[0].clientX;
-          if (startX - endX > 50 && index < totalImages - 1) {
-              index++;
-              updateSlider();
-          } else if (endX - startX > 50 && index > 0) {
-              index--;
-              updateSlider();
-          }
-        });
-      });
-    });
-  </script>
+  <script src="slider.js" defer></script>
 </head>
   
 <body>
