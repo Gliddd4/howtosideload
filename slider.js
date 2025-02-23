@@ -1,10 +1,12 @@
-// slider.js
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.slider-container').forEach(container => {
     const slider = container.querySelector('.slider');
     let index = 0;
     const images = slider.querySelectorAll('img');
     const totalImages = images.length;
+
+    // Set initial width of slider
+    slider.style.width = `${totalImages * 100}%`;
 
     // Create dots
     const dotsContainer = document.createElement('div');
@@ -20,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update slider position and active dot
     function updateSlider(newIndex) {
       index = Math.max(0, Math.min(newIndex, totalImages - 1));
-      slider.style.transform = `translateX(-${index * 100}%)`;
+      const translateValue = -index * (100 / totalImages);
+      slider.style.transform = `translateX(${translateValue}%)`;
       dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
       });
