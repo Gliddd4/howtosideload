@@ -1,4 +1,3 @@
-// slider.js
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.slider-container').forEach(container => {
     const slider = container.querySelector('.slider');
@@ -9,15 +8,39 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set slider width to accommodate all images horizontally
     slider.style.width = `${totalImages * 100}%`;
 
+    // Function to update the slider position
+    const updateSliderPosition = () => {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    };
+
     // Touch handling for swiping
     let startX = 0;
+    let isSwiping = false;
+
     container.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
+      isSwiping = true;
+    });
+
+    container.addEventListener("touchmove", (e) => {
+      if (!isSwiping) return;
+      const currentX = e.touches[0].clientX;
+      const diff = startX - currentX;
+
+      // Dynamically update the slider position while swiping
+      slider.style.transition = "none";
+      slider.style.transform = `translateX(-${index * 100 + diff}px)`;
     });
 
     container.addEventListener("touchend", (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+
       const endX = e.changedTouches[0].clientX;
       const diff = startX - endX;
+
+      // Reset transition after swiping ends
+      slider.style.transition = "transform 0.3s ease";
 
       if (Math.abs(diff) > 50) {
         if (diff > 0 && index < totalImages - 1) {
@@ -25,8 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (diff < 0 && index > 0) {
           index--;
         }
+      } else {
+        // If swipe distance is too short, snap back to the original position
         slider.style.transform = `translateX(-${index * 100}%)`;
+        return;
       }
+
+      updateSliderPosition();
     });
   });
 });
