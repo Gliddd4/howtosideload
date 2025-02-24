@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalImages = images.length;
 
     // Set slider width to accommodate all images horizontally
-    slider.style.width = `${totalImages * 100}%`;
+    const imageWidth = images[0].naturalWidth; // Get the natural width of the image
+    slider.style.width = `${imageWidth * totalImages}px`; // Set the total width
 
     // Function to update the slider position
     const updateSliderPosition = () => {
-      slider.style.transform = `translateX(-${index * 100}%)`;
+      slider.style.transform = `translateX(-${index * imageWidth}px)`;
     };
 
     // Touch handling for swiping
@@ -28,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const diff = startX - currentX;
 
       // Dynamically update the slider position while swiping
-      slider.style.transition = "none";
-      slider.style.transform = `translateX(-${index * 100 + diff}px)`;
+      slider.style.transition = "none"; // Disable transition during swiping
+      slider.style.transform = `translateX(-${index * imageWidth + diff}px)`;
     });
 
     container.addEventListener("touchend", (e) => {
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } else {
         // If swipe distance is too short, snap back to the original position
-        slider.style.transform = `translateX(-${index * 100}%)`;
+        slider.style.transform = `translateX(-${index * imageWidth}px)`;
         return;
       }
 
