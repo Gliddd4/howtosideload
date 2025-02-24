@@ -1,3 +1,4 @@
+// slider.js
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.slider-container').forEach(container => {
     const slider = container.querySelector('.slider');
@@ -5,12 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const images = slider.querySelectorAll('img');
     const totalImages = images.length;
 
-    // Function to go to a specific image
-    function goToImage(newIndex) {
-      index = newIndex;
-      const translateX = -index * 100; // Move slider horizontally
-      slider.style.transform = `translateX(${translateX}%)`;
-    }
+    // Set slider width to accommodate all images horizontally
+    slider.style.width = `${totalImages * 100}%`;
 
     // Touch handling for swiping
     let startX = 0;
@@ -22,12 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const endX = e.changedTouches[0].clientX;
       const diff = startX - endX;
 
-      if (Math.abs(diff) > 50) { // Minimum swipe distance
+      if (Math.abs(diff) > 50) {
         if (diff > 0 && index < totalImages - 1) {
-          goToImage(index + 1); // Swipe left (next image)
+          index++;
         } else if (diff < 0 && index > 0) {
-          goToImage(index - 1); // Swipe right (previous image)
+          index--;
         }
+        slider.style.transform = `translateX(-${index * 100}%)`;
       }
     });
   });
